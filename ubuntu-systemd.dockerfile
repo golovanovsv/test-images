@@ -1,3 +1,4 @@
+ARG VERSION
 FROM ubuntu:$VERSION
 LABEL maintainer="golovanovsv@gmail.com"
 
