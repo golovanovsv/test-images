@@ -13,6 +13,6 @@ RUN apt-get update && \
     curl \
     ca-certificates \
     software-properties-common
-RUN pip3 install docker-compose testinfra
+RUN pip3 install --upgrade pip && pip3 install docker-compose testinfra
 
 CMD ["/sbin/init"]
