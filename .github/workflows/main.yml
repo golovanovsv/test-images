@@ -14,8 +14,6 @@ jobs:
     - uses: actions/checkout@v2
     - name: build 
       run: docker build --pull --build-arg VERSION=$VERSION -f ubuntu-systemd.dockerfile -t golovanovsv/ubuntu:$VERSION-systemd .
-    - name: push image
-      run: docker push golovanovsv/ubuntu:18.04-systemd
   build-ubuntu-1804:
     env:
       VERSION: "18.04"
