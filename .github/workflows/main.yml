@@ -6,7 +6,7 @@ on:
     branches:
     - master
 jobs:
-  build-ubuntu-16.04:
+  build-ubuntu-1604:
     env:
       VERSION: "16.04"
     runs-on: ubuntu-latest
@@ -16,7 +16,7 @@ jobs:
       run: docker build --pull --build-arg VERSION=$VERSION -f ubuntu-systemd.dockerfile -t golovanovsv/ubuntu:$VERSION-systemd .
     - name: push image
       run: docker push golovanovsv/ubuntu:18.04-systemd
-  build-ubuntu-18.04:
+  build-ubuntu-1804:
     env:
       VERSION: "18.04"
     runs-on: ubuntu-latest
@@ -26,25 +26,27 @@ jobs:
       run: docker build --pull --build-arg VERSION=$VERSION -f ubuntu-systemd.dockerfile -t golovanovsv/ubuntu:$VERSION-systemd .
   login:
     needs:
-    - "ubuntu-16.04"
-    - "ubuntu-18.04"
+    - "build-ubuntu-1604"
+    - "build-ubuntu-1804"
     runs-on: ubuntu-latest
     steps:
     - name: login to docker hub
       run: echo "${{ secrets.DHUB_TOKEN }}" | docker login -u ${{ secrets.DHUB_USERNAME }} --password-stdin
-  push-ubuntu-16.04:
+  push-ubuntu-1604:
     env:
       VERSION: "16.04"
     needs:
     - "login"
+    runs-on: ubuntu-latest
     steps:
     - name: push
       run: docker push golovanovsv/ubuntu:$VERSION-systemd
-  push-ubuntu-18.04:
+  push-ubuntu-1804:
     env:
       VERSION: "18.04"
     needs:
     - "login"
+    runs-on: ubuntu-latest
     steps:
     - name: push
       run: docker push golovanovsv/ubuntu:$VERSION-systemd
