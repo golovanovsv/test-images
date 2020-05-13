@@ -8,6 +8,7 @@ RUN apt-get update && \
     gnupg-agent \
     sudo \
     apt-transport-https \
+    python3 \
     python3-pip \
     python3-setuptools \
     curl \

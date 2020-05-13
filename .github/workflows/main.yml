@@ -30,3 +30,15 @@ jobs:
       run: echo "${{ secrets.DHUB_TOKEN }}" | docker login -u ${{ secrets.DHUB_USERNAME }} --password-stdin
     - name: push
       run: docker push golovanovsv/ubuntu:$VERSION-systemd
+  ubuntu-2004:
+    env:
+      VERSION: "20.04"
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: build 
+      run: docker build --pull --build-arg VERSION=$VERSION -f ubuntu-systemd.dockerfile -t golovanovsv/ubuntu:$VERSION-systemd .
+    - name: login to docker hub
+      run: echo "${{ secrets.DHUB_TOKEN }}" | docker login -u ${{ secrets.DHUB_USERNAME }} --password-stdin
+    - name: push
+      run: docker push golovanovsv/ubuntu:$VERSION-systemd
