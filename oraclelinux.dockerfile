@@ -2,13 +2,18 @@ ARG VERSION
 FROM oraclelinux:$VERSION
 LABEL maintainer="golovanovsv@gmail.com"
 
-RUN yum -y install \
+RUN yum install -y oracle-softwarecollection-release-el6 scl-utils && \
+    yum install -y \
       sudo \
-      python3 \
-      python3-pip \
-      python3-setuptools \
+      rh-python36 \
       curl \
-      ca-certificates
-RUN pip3 install docker-compose testinfra
+      ca-certificates && \
+      ln -sf /opt/rh/rh-python36/root/usr/bin/python3 /usr/bin/python3 && \
+      ln -sf /opt/rh/rh-python36/root/usr/bin/python3 /usr/bin/python && \
+      ln -sf /opt/rh/rh-python36/root/usr/bin/pip3 /usr/bin/pip3 && \
+      ln -sf /opt/rh/rh-python36/root/usr/bin/pip3 /usr/bin/pip
+
+RUN pip3 install --upgrade pip && \
+    pip3 install docker-compose testinfra
 
 CMD ["/sbin/init"]

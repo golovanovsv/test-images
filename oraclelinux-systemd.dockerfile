@@ -2,7 +2,7 @@ ARG VERSION
 FROM oraclelinux:$VERSION
 LABEL maintainer="golovanovsv@gmail.com"
 
-RUN yum -y install \
+RUN yum install -y \
       sudo \
       systemd \
       python3 \
@@ -10,6 +10,7 @@ RUN yum -y install \
       python3-setuptools \
       curl \
       ca-certificates
+
 RUN pip3 install docker-compose testinfra
 
 CMD ["/sbin/init"]
