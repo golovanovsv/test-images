@@ -42,6 +42,42 @@ jobs:
       run: echo "${{ secrets.DHUB_TOKEN }}" | docker login -u ${{ secrets.DHUB_USERNAME }} --password-stdin
     - name: push
       run: docker push golovanovsv/ubuntu:$VERSION-systemd
+  debian-8:
+    env:
+      VERSION: "jessie"
+      NVERSION: "8"
+    steps:
+    - uses: actions/checkout@v2
+    - name: build 
+      run: docker build --pull --build-arg VERSION=$VERSION -f debian-systemd.dockerfile -t golovanovsv/debian:$NVERSION-systemd .
+    - name: login to docker hub
+      run: echo "${{ secrets.DHUB_TOKEN }}" | docker login -u ${{ secrets.DHUB_USERNAME }} --password-stdin
+    - name: push
+      run: docker push golovanovsv/debian:$NVERSION-systemd
+  debian-9:
+    env:
+      VERSION: "stretch"
+      NVERSION: "9"
+    steps:
+    - uses: actions/checkout@v2
+    - name: build 
+      run: docker build --pull --build-arg VERSION=$VERSION -f debian-systemd.dockerfile -t golovanovsv/debian:$NVERSION-systemd .
+    - name: login to docker hub
+      run: echo "${{ secrets.DHUB_TOKEN }}" | docker login -u ${{ secrets.DHUB_USERNAME }} --password-stdin
+    - name: push
+      run: docker push golovanovsv/debian:$NVERSION-systemd
+  debian-10:
+    env:
+      VERSION: "buster"
+      NVERSION: "10"
+    steps:
+    - uses: actions/checkout@v2
+    - name: build 
+      run: docker build --pull --build-arg VERSION=$VERSION -f debian-systemd.dockerfile -t golovanovsv/debian:$NVERSION-systemd .
+    - name: login to docker hub
+      run: echo "${{ secrets.DHUB_TOKEN }}" | docker login -u ${{ secrets.DHUB_USERNAME }} --password-stdin
+    - name: push
+      run: docker push golovanovsv/debian:$NVERSION-systemd
   oraclelinux-6:
     env:
       VERSION: "6"
