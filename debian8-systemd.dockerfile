@@ -5,16 +5,16 @@ LABEL maintainer="golovanovsv@gmail.com"
 RUN apt-get update && \
     apt-get install -y systemd && \
     apt-get install --no-install-recommends -y \
+    gnupg \
     gnupg-agent \
     sudo \
     apt-transport-https \
-    python3 \
-    python3-pip \
-    python3-setuptools \
+    python \
+    python-pip \
     curl \
     ca-certificates \
     software-properties-common
 
-RUN apt install python3-docker && pip3 install --upgrade pip && pip3 install testinfra
+RUN apt install -y --no-install-recommends python-docker && pip install --upgrade 'pip<20' 'setuptools<44' && pip install 'pytest==4.6.6' 'testinfra==3.4.0'
 
-CMD ["/sbin/init"]
+CMD ["/lib/systemd/systemd"]

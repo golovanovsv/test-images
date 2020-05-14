@@ -13,4 +13,4 @@ RUN yum install -y \
 
 RUN pip3 install docker-compose testinfra
 
-CMD ["/sbin/init"]
+CMD ["/lib/systemd/systemd"]
