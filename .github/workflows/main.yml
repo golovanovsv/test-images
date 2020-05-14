@@ -46,6 +46,7 @@ jobs:
     env:
       VERSION: "jessie"
       NVERSION: "8"
+    runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
     - name: build 
@@ -58,6 +59,7 @@ jobs:
     env:
       VERSION: "stretch"
       NVERSION: "9"
+    runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
     - name: build 
@@ -70,6 +72,7 @@ jobs:
     env:
       VERSION: "buster"
       NVERSION: "10"
+    runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
     - name: build 
