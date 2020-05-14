@@ -50,7 +50,7 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     - name: build 
-      run: docker build --pull --build-arg VERSION=$VERSION -f debian-systemd.dockerfile -t golovanovsv/debian:$NVERSION-systemd .
+      run: docker build --pull --build-arg VERSION=$VERSION -f debian8-systemd.dockerfile -t golovanovsv/debian:$NVERSION-systemd .
     - name: login to docker hub
       run: echo "${{ secrets.DHUB_TOKEN }}" | docker login -u ${{ secrets.DHUB_USERNAME }} --password-stdin
     - name: push

@@ -1,5 +1,5 @@
 ARG VERSION
-FROM ubuntu:$VERSION
+FROM debian:$VERSION-slim
 LABEL maintainer="golovanovsv@gmail.com"
 
 RUN apt-get update && \
@@ -15,6 +15,6 @@ RUN apt-get update && \
     ca-certificates \
     software-properties-common
 
-RUN pip3 install --upgrade pip && pip3 install docker-compose testinfra
+RUN apt install python3-docker && pip3 install --upgrade pip && pip3 install testinfra
 
 CMD ["/sbin/init"]
