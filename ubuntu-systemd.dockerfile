@@ -10,9 +10,11 @@ RUN apt-get update && \
     sudo \
     apt-transport-https \
     net-tools \
+    openssh-server \
     python3 \
     python3-pip \
     python3-setuptools \
+    rsyslog \
     curl \
     ca-certificates \
     software-properties-common
