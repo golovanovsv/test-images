@@ -9,12 +9,14 @@ RUN apt-get update && \
     gnupg-agent \
     sudo \
     apt-transport-https \
+    net-tools \
     python \
     python-pip \
     curl \
     ca-certificates \
     software-properties-common
 
-RUN apt install -y --no-install-recommends python-docker && pip install --upgrade 'pip<20' 'setuptools<44' && pip install 'pytest==4.6.6' 'testinfra==3.4.0'
+RUN apt install -y --no-install-recommends python-docker && pip install --upgrade 'pip<20' 'setuptools<44' wheel && \
+    pip install 'pytest==4.6.6' 'testinfra==3.4.0' 'zipp==0.3.3' 'configparser==3.5.0'
 
 CMD ["/lib/systemd/systemd"]

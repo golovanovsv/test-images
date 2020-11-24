@@ -9,6 +9,7 @@ RUN apt-get update && \
     gnupg-agent \
     sudo \
     apt-transport-https \
+    net-tools \
     python3 \
     python3-pip \
     python3-setuptools \
