@@ -9,6 +9,7 @@ RUN apt-get update && \
     gnupg-agent \
     sudo \
     apt-transport-https \
+    mcedit \
     net-tools \
     openssh-server \
     python3 \
