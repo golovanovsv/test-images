@@ -81,6 +81,19 @@ jobs:
       run: echo "${{ secrets.DHUB_TOKEN }}" | docker login -u ${{ secrets.DHUB_USERNAME }} --password-stdin
     - name: push
       run: docker push golovanovsv/debian:$NVERSION-systemd
+  amazon-linux2:
+    env:
+      VERSION: "2"
+      NVERSION: "2"
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: build
+      run: docker build --pull --build-arg VERSION=$VERSION -f amazon2-systemd.dockerfile -t golovanovsv/amazon:$NVERSION-systemd .
+    - name: login to docker hub
+      run: echo "${{ secrets.DHUB_TOKEN }}" | docker login -u ${{ secrets.DHUB_USERNAME }} --password-stdin
+    - name: push
+      run: docker push golovanovsv/amazon:$NVERSION-systemd
   oraclelinux-6:
     env:
       VERSION: "6"
