@@ -20,6 +20,9 @@ RUN apt-get update && \
     ca-certificates \
     software-properties-common
 
-RUN pip3 install --upgrade pip && pip3 install docker-compose testinfra
+RUN UVER=$(cat /etc/os-release | grep "VERSION_ID=" | sed 's/VERSION_ID="\(.*\)\.\(.*\)"/\1/') && \
+    [ "${UVER}" -le 16 ] && pip3 -q install --upgrade pip==20.3 || \
+    pip3 install --upgrade pip && \
+    pip3 install docker-compose testinfra
 
 CMD ["/lib/systemd/systemd"]

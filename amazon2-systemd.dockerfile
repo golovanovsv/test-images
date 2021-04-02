@@ -9,6 +9,7 @@ RUN yum install -y \
       net-tools \
       openssh-server \
       python3 \
+      python3-pip \
       rsyslog \
       sudo
       
