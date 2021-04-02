@@ -11,6 +11,7 @@ RUN yum install -y \
       curl \
       ca-certificates
 
-RUN pip3 install docker-compose testinfra
+RUN pip3 install --upgrade pip && \
+    pip3 install docker-compose testinfra
 
 CMD ["/lib/systemd/systemd"]

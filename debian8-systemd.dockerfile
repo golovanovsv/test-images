@@ -20,6 +20,10 @@ RUN apt-get update && \
     software-properties-common
 
 RUN apt install -y --no-install-recommends python-docker && pip install --upgrade 'pip<20' 'setuptools<44' wheel && \
-    pip install 'pytest==4.6.6' 'testinfra==3.4.0' 'zipp==0.3.3' 'configparser==3.5.0'
+    pip install 'importlib_metadata==3.7.3' \
+                'configparser==4.0.2' \
+                'pytest==4.6.6' \
+                'testinfra==3.4.0' \
+                'zipp==0.3.3'
 
 CMD ["/lib/systemd/systemd"]
