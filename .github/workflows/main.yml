@@ -6,18 +6,6 @@ on:
     branches:
     - master
 jobs:
-  ubuntu-1604:
-    env:
-      VERSION: "16.04"
-    runs-on: ubuntu-latest
-    steps:
-    - uses: actions/checkout@v2
-    - name: build 
-      run: docker build --pull --build-arg VERSION=$VERSION -f ubuntu-systemd.dockerfile -t golovanovsv/ubuntu:$VERSION-systemd .
-    - name: login to docker hub
-      run: echo "${{ secrets.DHUB_TOKEN }}" | docker login -u ${{ secrets.DHUB_USERNAME }} --password-stdin
-    - name: push
-      run: docker push golovanovsv/ubuntu:$VERSION-systemd
   ubuntu-1804:
     env:
       VERSION: "18.04"
@@ -42,19 +30,18 @@ jobs:
       run: echo "${{ secrets.DHUB_TOKEN }}" | docker login -u ${{ secrets.DHUB_USERNAME }} --password-stdin
     - name: push
       run: docker push golovanovsv/ubuntu:$VERSION-systemd
-  debian-8:
+  ubuntu-2204:
     env:
-      VERSION: "jessie"
-      NVERSION: "8"
+      VERSION: "22.04"
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
     - name: build 
-      run: docker build --pull --build-arg VERSION=$VERSION -f debian8-systemd.dockerfile -t golovanovsv/debian:$NVERSION-systemd .
+      run: docker build --pull --build-arg VERSION=$VERSION -f ubuntu-systemd.dockerfile -t golovanovsv/ubuntu:$VERSION-systemd .
     - name: login to docker hub
       run: echo "${{ secrets.DHUB_TOKEN }}" | docker login -u ${{ secrets.DHUB_USERNAME }} --password-stdin
     - name: push
-      run: docker push golovanovsv/debian:$NVERSION-systemd
+      run: docker push golovanovsv/ubuntu:$VERSION-systemd
   debian-9:
     env:
       VERSION: "stretch"
@@ -72,6 +59,19 @@ jobs:
     env:
       VERSION: "buster"
       NVERSION: "10"
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: build 
+      run: docker build --pull --build-arg VERSION=$VERSION -f debian-systemd.dockerfile -t golovanovsv/debian:$NVERSION-systemd .
+    - name: login to docker hub
+      run: echo "${{ secrets.DHUB_TOKEN }}" | docker login -u ${{ secrets.DHUB_USERNAME }} --password-stdin
+    - name: push
+      run: docker push golovanovsv/debian:$NVERSION-systemd
+  debian-11:
+    env:
+      VERSION: "bullseye"
+      NVERSION: "11"
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
