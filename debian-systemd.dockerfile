@@ -21,8 +21,8 @@ RUN apt-get update && \
     curl \
     ca-certificates \
     software-properties-common && \
-    # Для 9 версии debian часть PIP пакетов уже не собирается во wheel-пакеты
-    if [ $VERSION = "9" ]; then \
+    # Для 9 (stretch) версии debian часть PIP пакетов уже не собирается во wheel-пакеты
+    if [ $VERSION = "stretch" ]; then \
       apt-get install --no-install-recommends -y \
         gcc-multilib \
         python3-dev \
