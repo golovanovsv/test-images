@@ -2,8 +2,10 @@ ARG VERSION
 FROM debian:$VERSION-slim
 LABEL maintainer="golovanovsv@gmail.com"
 
+ARG VERSION
+
 RUN apt-get update && \
-    apt-get install -y systemd && \
+    apt-get install --no-install-recommends -y systemd && \
     apt-get install --no-install-recommends -y \
     gnupg \
     gnupg-agent \
@@ -18,8 +20,14 @@ RUN apt-get update && \
     rsyslog \
     curl \
     ca-certificates \
-    software-properties-common
+    software-properties-common && \
+    # Для 9 версии debian часть PIP пакетов уже не собирается во wheel-пакеты
+    if [ $VERSION = "9" ]; then \
+      apt-get install --no-install-recommends -y \
+        gcc-multilib \
+        python3-dev \
+        libffi-dev; fi
 
-RUN pip3 install --upgrade pip && pip3 install docker-compose testinfra
+RUN pip3 install --upgrade pip && pip3 install docker-compose
 
 CMD ["/lib/systemd/systemd"]
