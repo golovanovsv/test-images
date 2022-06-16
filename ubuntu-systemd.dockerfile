@@ -7,6 +7,8 @@ RUN apt-get update && \
     apt-get install --no-install-recommends -y \
     gnupg \
     gnupg-agent \
+    # Ansible requires the iproute2 package for network facts to be populated
+    iproute2 \
     sudo \
     apt-transport-https \
     mcedit \

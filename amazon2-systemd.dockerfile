@@ -5,6 +5,8 @@ LABEL maintainer="golovanovsv@gmail.com"
 RUN yum install -y \
       ca-certificates \
       curl \
+      # Ansible requires the iproute2 package for network facts to be populated
+      iproute \
       mcedit \
       net-tools \
       openssh-server \
