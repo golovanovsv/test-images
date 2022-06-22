@@ -11,3 +11,5 @@ RUN mkdir -p /etc/apt/keyrings && \
       docker-ce-cli \
       containerd.io \
       docker-compose-plugin
+
+VOLUME [ "/var/lib/docker" ]
