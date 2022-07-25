@@ -5,10 +5,12 @@ LABEL maintainer="golovanovsv@gmail.com"
 RUN apt-get update && \
     apt-get install --no-install-recommends -y systemd && \
     apt-get install --no-install-recommends -y \
+    dnsutils \
     gnupg \
     gnupg-agent \
     # Ansible requires the iproute2 package for network facts to be populated
     iproute2 \
+    iputils-ping \
     sudo \
     apt-transport-https \
     mcedit \
