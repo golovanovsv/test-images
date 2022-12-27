@@ -13,8 +13,10 @@ RUN yum install -y \
       python3 \
       python3-pip \
       rsyslog \
-      sudo
+      sudo && \
+    yum clean all
       
-RUN pip3 install --upgrade pip && pip3 install docker-compose testinfra
+RUN pip3 install --no-cache-dir --upgrade pip && \
+    pip3 install --no-cache-dir docker-compose testinfra
 
 CMD ["/lib/systemd/systemd"]

@@ -12,6 +12,8 @@ RUN mkdir -p /etc/apt/keyrings && \
       docker-ce-cli \
       containerd.io \
       docker-compose-plugin \
-      iputils-ping
+      iputils-ping && \
+    apt-get clean && \
+    rm -rf /var/lib/apt/lists/*
 
 VOLUME [ "/var/lib/docker" ]

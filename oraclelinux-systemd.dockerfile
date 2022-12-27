@@ -9,9 +9,10 @@ RUN yum install -y \
       python3-pip \
       python3-setuptools \
       curl \
-      ca-certificates
+      ca-certificates && \
+    yum clean all
 
-RUN pip3 install --upgrade pip && \
-    pip3 install docker-compose testinfra
+RUN pip3 install --no-cache-dir --upgrade pip && \
+    pip3 install --no-cache-dir docker-compose testinfra
 
 CMD ["/lib/systemd/systemd"]
