@@ -11,7 +11,7 @@ jobs:
       VERSION: "18.04"
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v3
     - name: build 
       run: docker build --pull --build-arg VERSION=$VERSION -f ubuntu-systemd.dockerfile -t golovanovsv/ubuntu:$VERSION-systemd .
     - name: login to docker hub
@@ -25,7 +25,7 @@ jobs:
     needs:
     - ubuntu-1804
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v3
     - name: build 
       run: docker build --pull --build-arg VERSION=$VERSION -f ubuntu-docker.dockerfile -t golovanovsv/ubuntu:$VERSION-systemd-docker .
     - name: login to docker hub
@@ -37,7 +37,7 @@ jobs:
       VERSION: "20.04"
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v3
     - name: build 
       run: docker build --pull --build-arg VERSION=$VERSION -f ubuntu-systemd.dockerfile -t golovanovsv/ubuntu:$VERSION-systemd .
     - name: login to docker hub
@@ -51,7 +51,7 @@ jobs:
     needs:
     - ubuntu-2004
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v3
     - name: build 
       run: docker build --pull --build-arg VERSION=$VERSION -f ubuntu-docker.dockerfile -t golovanovsv/ubuntu:$VERSION-systemd-docker .
     - name: login to docker hub
@@ -63,7 +63,7 @@ jobs:
       VERSION: "22.04"
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v3
     - name: build 
       run: docker build --pull --build-arg VERSION=$VERSION -f ubuntu-systemd.dockerfile -t golovanovsv/ubuntu:$VERSION-systemd .
     - name: login to docker hub
@@ -77,7 +77,7 @@ jobs:
     needs:
     - ubuntu-2204
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v3
     - name: build 
       run: docker build --pull --build-arg VERSION=$VERSION -f ubuntu-docker.dockerfile -t golovanovsv/ubuntu:$VERSION-systemd-docker .
     - name: login to docker hub
@@ -90,7 +90,7 @@ jobs:
       NVERSION: "9"
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v3
     - name: build 
       run: docker build --pull --build-arg VERSION=$VERSION -f debian-systemd.dockerfile -t golovanovsv/debian:$NVERSION-systemd .
     - name: login to docker hub
@@ -103,7 +103,7 @@ jobs:
       NVERSION: "10"
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v3
     - name: build 
       run: docker build --pull --build-arg VERSION=$VERSION -f debian-systemd.dockerfile -t golovanovsv/debian:$NVERSION-systemd .
     - name: login to docker hub
@@ -116,7 +116,7 @@ jobs:
       NVERSION: "11"
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v3
     - name: build 
       run: docker build --pull --build-arg VERSION=$VERSION -f debian-systemd.dockerfile -t golovanovsv/debian:$NVERSION-systemd .
     - name: login to docker hub
@@ -129,7 +129,7 @@ jobs:
       NVERSION: "2"
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v3
     - name: build
       run: docker build --pull --build-arg VERSION=$VERSION -f amazon2-systemd.dockerfile -t golovanovsv/amazon:$NVERSION-systemd .
     - name: login to docker hub
@@ -141,7 +141,7 @@ jobs:
       VERSION: "7"
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v3
     - name: build 
       run: docker build --pull --build-arg VERSION=$VERSION -f oraclelinux-systemd.dockerfile -t golovanovsv/oraclelinux:$VERSION-systemd .
     - name: login to docker hub
@@ -153,7 +153,7 @@ jobs:
       VERSION: "8"
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v3
     - name: build 
       run: docker build --pull --build-arg VERSION=$VERSION -f oraclelinux-systemd.dockerfile -t golovanovsv/oraclelinux:$VERSION-systemd .
     - name: login to docker hub
@@ -165,7 +165,7 @@ jobs:
       VERSION: "9"
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v3
     - name: build 
       run: docker build --pull --build-arg VERSION=$VERSION -f oraclelinux-systemd.dockerfile -t golovanovsv/oraclelinux:$VERSION-systemd .
     - name: login to docker hub
