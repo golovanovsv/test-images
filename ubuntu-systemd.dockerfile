@@ -29,6 +29,6 @@ RUN apt-get update && \
     rm -rf /var/lib/apt/lists/*
 
 RUN pip3 install --no-cache-dir --upgrade pip && \
-    pip3 install --no-cache-dir docker-compose testinfra
+    pip3 install --no-cache-dir pyyaml==5.3.1 docker-compose pytest-testinfra
 
 CMD ["/lib/systemd/systemd"]

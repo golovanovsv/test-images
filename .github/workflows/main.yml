@@ -11,8 +11,8 @@ jobs:
       VERSION: "18.04"
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v3
-    - name: build 
+    - uses: actions/checkout@v4
+    - name: build
       run: docker build --pull --build-arg VERSION=$VERSION -f ubuntu-systemd.dockerfile -t golovanovsv/ubuntu:$VERSION-systemd .
     - name: login to docker hub
       run: echo "${{ secrets.DHUB_TOKEN }}" | docker login -u ${{ secrets.DHUB_USERNAME }} --password-stdin
@@ -25,8 +25,8 @@ jobs:
     needs:
     - ubuntu-1804
     steps:
-    - uses: actions/checkout@v3
-    - name: build 
+    - uses: actions/checkout@v4
+    - name: build
       run: docker build --pull --build-arg VERSION=$VERSION -f ubuntu-docker.dockerfile -t golovanovsv/ubuntu:$VERSION-systemd-docker .
     - name: login to docker hub
       run: echo "${{ secrets.DHUB_TOKEN }}" | docker login -u ${{ secrets.DHUB_USERNAME }} --password-stdin
@@ -37,8 +37,8 @@ jobs:
       VERSION: "20.04"
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v3
-    - name: build 
+    - uses: actions/checkout@v4
+    - name: build
       run: docker build --pull --build-arg VERSION=$VERSION -f ubuntu-systemd.dockerfile -t golovanovsv/ubuntu:$VERSION-systemd .
     - name: login to docker hub
       run: echo "${{ secrets.DHUB_TOKEN }}" | docker login -u ${{ secrets.DHUB_USERNAME }} --password-stdin
@@ -51,8 +51,8 @@ jobs:
     needs:
     - ubuntu-2004
     steps:
-    - uses: actions/checkout@v3
-    - name: build 
+    - uses: actions/checkout@v4
+    - name: build
       run: docker build --pull --build-arg VERSION=$VERSION -f ubuntu-docker.dockerfile -t golovanovsv/ubuntu:$VERSION-systemd-docker .
     - name: login to docker hub
       run: echo "${{ secrets.DHUB_TOKEN }}" | docker login -u ${{ secrets.DHUB_USERNAME }} --password-stdin
@@ -63,8 +63,8 @@ jobs:
       VERSION: "22.04"
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v3
-    - name: build 
+    - uses: actions/checkout@v4
+    - name: build
       run: docker build --pull --build-arg VERSION=$VERSION -f ubuntu-systemd.dockerfile -t golovanovsv/ubuntu:$VERSION-systemd .
     - name: login to docker hub
       run: echo "${{ secrets.DHUB_TOKEN }}" | docker login -u ${{ secrets.DHUB_USERNAME }} --password-stdin
@@ -77,34 +77,21 @@ jobs:
     needs:
     - ubuntu-2204
     steps:
-    - uses: actions/checkout@v3
-    - name: build 
+    - uses: actions/checkout@v4
+    - name: build
       run: docker build --pull --build-arg VERSION=$VERSION -f ubuntu-docker.dockerfile -t golovanovsv/ubuntu:$VERSION-systemd-docker .
     - name: login to docker hub
       run: echo "${{ secrets.DHUB_TOKEN }}" | docker login -u ${{ secrets.DHUB_USERNAME }} --password-stdin
     - name: push
       run: docker push golovanovsv/ubuntu:$VERSION-systemd-docker
-  debian-9:
-    env:
-      VERSION: "stretch"
-      NVERSION: "9"
-    runs-on: ubuntu-latest
-    steps:
-    - uses: actions/checkout@v3
-    - name: build 
-      run: docker build --pull --build-arg VERSION=$VERSION -f debian-systemd.dockerfile -t golovanovsv/debian:$NVERSION-systemd .
-    - name: login to docker hub
-      run: echo "${{ secrets.DHUB_TOKEN }}" | docker login -u ${{ secrets.DHUB_USERNAME }} --password-stdin
-    - name: push
-      run: docker push golovanovsv/debian:$NVERSION-systemd
   debian-10:
     env:
       VERSION: "buster"
       NVERSION: "10"
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v3
-    - name: build 
+    - uses: actions/checkout@v4
+    - name: build
       run: docker build --pull --build-arg VERSION=$VERSION -f debian-systemd.dockerfile -t golovanovsv/debian:$NVERSION-systemd .
     - name: login to docker hub
       run: echo "${{ secrets.DHUB_TOKEN }}" | docker login -u ${{ secrets.DHUB_USERNAME }} --password-stdin
@@ -116,8 +103,21 @@ jobs:
       NVERSION: "11"
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v3
-    - name: build 
+    - uses: actions/checkout@v4
+    - name: build
+      run: docker build --pull --build-arg VERSION=$VERSION -f debian-systemd.dockerfile -t golovanovsv/debian:$NVERSION-systemd .
+    - name: login to docker hub
+      run: echo "${{ secrets.DHUB_TOKEN }}" | docker login -u ${{ secrets.DHUB_USERNAME }} --password-stdin
+    - name: push
+      run: docker push golovanovsv/debian:$NVERSION-systemd
+  debian-12:
+    env:
+      VERSION: "bookworm"
+      NVERSION: "12"
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4
+    - name: build
       run: docker build --pull --build-arg VERSION=$VERSION -f debian-systemd.dockerfile -t golovanovsv/debian:$NVERSION-systemd .
     - name: login to docker hub
       run: echo "${{ secrets.DHUB_TOKEN }}" | docker login -u ${{ secrets.DHUB_USERNAME }} --password-stdin
@@ -129,7 +129,7 @@ jobs:
       NVERSION: "2"
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v3
+    - uses: actions/checkout@v4
     - name: build
       run: docker build --pull --build-arg VERSION=$VERSION -f amazon2-systemd.dockerfile -t golovanovsv/amazon:$NVERSION-systemd .
     - name: login to docker hub
@@ -141,8 +141,8 @@ jobs:
       VERSION: "7"
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v3
-    - name: build 
+    - uses: actions/checkout@v4
+    - name: build
       run: docker build --pull --build-arg VERSION=$VERSION -f oraclelinux-systemd.dockerfile -t golovanovsv/oraclelinux:$VERSION-systemd .
     - name: login to docker hub
       run: echo "${{ secrets.DHUB_TOKEN }}" | docker login -u ${{ secrets.DHUB_USERNAME }} --password-stdin
@@ -153,8 +153,8 @@ jobs:
       VERSION: "8"
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v3
-    - name: build 
+    - uses: actions/checkout@v4
+    - name: build
       run: docker build --pull --build-arg VERSION=$VERSION -f oraclelinux-systemd.dockerfile -t golovanovsv/oraclelinux:$VERSION-systemd .
     - name: login to docker hub
       run: echo "${{ secrets.DHUB_TOKEN }}" | docker login -u ${{ secrets.DHUB_USERNAME }} --password-stdin
@@ -165,8 +165,8 @@ jobs:
       VERSION: "9"
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v3
-    - name: build 
+    - uses: actions/checkout@v4
+    - name: build
       run: docker build --pull --build-arg VERSION=$VERSION -f oraclelinux-systemd.dockerfile -t golovanovsv/oraclelinux:$VERSION-systemd .
     - name: login to docker hub
       run: echo "${{ secrets.DHUB_TOKEN }}" | docker login -u ${{ secrets.DHUB_USERNAME }} --password-stdin
