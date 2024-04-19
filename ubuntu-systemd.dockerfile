@@ -22,7 +22,9 @@ RUN apt-get update && \
       rsyslog \
       curl \
       ca-certificates \
-      software-properties-common && \
+      software-properties-common \
+      # Ansible requires for modprobe module
+      kmod && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
 
