@@ -7,10 +7,10 @@ RUN mkdir -p /etc/apt/keyrings && \
       $(lsb_release -cs) stable" | tee /etc/apt/sources.list.d/docker.list > /dev/null && \
     apt-get update && \
     apt-get install --no-install-recommends -y \
+      containerd.io \
       dnsutils \
       docker-ce \
       docker-ce-cli \
-      containerd.io \
       docker-compose-plugin \
       iputils-ping && \
     apt-get clean && \

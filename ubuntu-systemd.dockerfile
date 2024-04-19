@@ -5,6 +5,9 @@ LABEL maintainer="golovanovsv@gmail.com"
 RUN apt-get update && \
     apt-get install --no-install-recommends -y systemd && \
     apt-get install --no-install-recommends -y \
+      apt-transport-https \
+      ca-certificates \
+      curl \
       dnsutils \
       gnupg \
       gnupg-agent \
@@ -12,7 +15,8 @@ RUN apt-get update && \
       iproute2 \
       iputils-ping \
       sudo \
-      apt-transport-https \
+      # Ansible requires for modprobe module
+      kmod \
       mcedit \
       net-tools \
       openssh-server \
@@ -20,11 +24,7 @@ RUN apt-get update && \
       python3-pip \
       python3-setuptools \
       rsyslog \
-      curl \
-      ca-certificates \
-      software-properties-common \
-      # Ansible requires for modprobe module
-      kmod && \
+      software-properties-common && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
 
