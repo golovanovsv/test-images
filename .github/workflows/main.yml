@@ -84,6 +84,32 @@ jobs:
       run: echo "${{ secrets.DHUB_TOKEN }}" | docker login -u ${{ secrets.DHUB_USERNAME }} --password-stdin
     - name: push
       run: docker push golovanovsv/ubuntu:$VERSION-systemd-docker
+  ubuntu-2404:
+    env:
+      VERSION: "24.04"
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4
+    - name: build
+      run: docker build --pull --build-arg VERSION=$VERSION -f ubuntu-systemd.dockerfile -t golovanovsv/ubuntu:$VERSION-systemd .
+    - name: login to docker hub
+      run: echo "${{ secrets.DHUB_TOKEN }}" | docker login -u ${{ secrets.DHUB_USERNAME }} --password-stdin
+    - name: push
+      run: docker push golovanovsv/ubuntu:$VERSION-systemd
+  ubuntu-2404-docker:
+    env:
+      VERSION: "24.04"
+    runs-on: ubuntu-latest
+    needs:
+    - ubuntu-2404
+    steps:
+    - uses: actions/checkout@v4
+    - name: build
+      run: docker build --pull --build-arg VERSION=$VERSION -f ubuntu-docker.dockerfile -t golovanovsv/ubuntu:$VERSION-systemd-docker .
+    - name: login to docker hub
+      run: echo "${{ secrets.DHUB_TOKEN }}" | docker login -u ${{ secrets.DHUB_USERNAME }} --password-stdin
+    - name: push
+      run: docker push golovanovsv/ubuntu:$VERSION-systemd-docker
   debian-10:
     env:
       VERSION: "buster"
