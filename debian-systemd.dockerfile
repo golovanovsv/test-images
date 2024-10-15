@@ -35,6 +35,6 @@ RUN apt-get update && \
     rm -rf /var/lib/apt/lists/*
 
 RUN pip3 install --no-cache-dir --upgrade pip && \
-    pip3 install --no-cache-dir docker-compose
+    pip3 install --no-cache-dir --break-system-packages docker-compose
 
 CMD ["/lib/systemd/systemd"]
