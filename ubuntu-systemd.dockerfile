@@ -1,4 +1,4 @@
-ARG VERSION
+ARG VERSION=24.04
 FROM ubuntu:$VERSION
 LABEL maintainer="golovanovsv@gmail.com"
 
@@ -28,7 +28,8 @@ RUN apt-get update && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
 
-RUN pip3 install --no-cache-dir --upgrade pip && \
-    pip3 install --no-cache-dir --break-system-packages pyyaml==5.3.1 docker-compose pytest-testinfra
+RUN . /etc/os-release && \
+    if [ "${VERSION_ID}" = "24.04" ]; then pip config set global.break-system-packages true; fi && \
+    pip3 install --no-cache-dir pyyaml==5.3.1 docker-compose pytest-testinfra
 
 CMD ["/lib/systemd/systemd"]

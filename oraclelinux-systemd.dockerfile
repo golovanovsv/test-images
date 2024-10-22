@@ -1,4 +1,4 @@
-ARG VERSION
+ARG VERSION=9
 FROM oraclelinux:$VERSION
 LABEL maintainer="golovanovsv@gmail.com"
 

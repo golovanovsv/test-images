@@ -1,4 +1,4 @@
-ARG VERSION
+ARG VERSION=2
 FROM amazonlinux:$VERSION
 LABEL maintainer="golovanovsv@gmail.com"
 

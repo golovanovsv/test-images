@@ -1,4 +1,4 @@
-ARG VERSION
+ARG VERSION=24.04
 FROM golovanovsv/ubuntu:$VERSION-systemd
 
 RUN mkdir -p /etc/apt/keyrings && \
