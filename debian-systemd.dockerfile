@@ -29,4 +29,8 @@ RUN apt-get update && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
 
+RUN . /etc/os-release && \
+    if [ "${VERSION_ID}" = "12" ]; then pip config set global.break-system-packages true; fi && \
+    pip3 install --no-cache-dir pytest-testinfra
+
 CMD ["/lib/systemd/systemd"]

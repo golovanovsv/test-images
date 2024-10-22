@@ -9,6 +9,7 @@ RUN apt-get update && \
       ca-certificates \
       curl \
       dnsutils \
+      docker-compose \
       gnupg \
       gnupg-agent \
       # Ansible requires the iproute2 package for network facts to be populated
@@ -30,6 +31,6 @@ RUN apt-get update && \
 
 RUN . /etc/os-release && \
     if [ "${VERSION_ID}" = "24.04" ]; then pip config set global.break-system-packages true; fi && \
-    pip3 install --no-cache-dir pyyaml==5.3.1 docker-compose pytest-testinfra
+    pip3 install --no-cache-dir pytest-testinfra
 
 CMD ["/lib/systemd/systemd"]
