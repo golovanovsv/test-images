@@ -149,6 +149,48 @@ jobs:
       run: echo "${{ secrets.DHUB_TOKEN }}" | docker login -u ${{ secrets.DHUB_USERNAME }} --password-stdin
     - name: push
       run: docker push golovanovsv/debian:$NVERSION-systemd
+  debian-10-docker:
+    env:
+      VERSION: "10"
+    runs-on: ubuntu-latest
+    needs:
+    - debian-10
+    steps:
+    - uses: actions/checkout@v4
+    - name: build
+      run: docker build --pull --build-arg VERSION=$VERSION -f debian-docker.dockerfile -t golovanovsv/debian:$VERSION-docker .
+    - name: login to docker hub
+      run: echo "${{ secrets.DHUB_TOKEN }}" | docker login -u ${{ secrets.DHUB_USERNAME }} --password-stdin
+    - name: push
+      run: docker push golovanovsv/debian:$VERSION-docker
+  debian-11:
+    env:
+      VERSION: "11"
+    runs-on: ubuntu-latest
+    needs:
+    - debian-11
+    steps:
+    - uses: actions/checkout@v4
+    - name: build
+      run: docker build --pull --build-arg VERSION=$VERSION -f debian-docker.dockerfile -t golovanovsv/debian:$VERSION-docker .
+    - name: login to docker hub
+      run: echo "${{ secrets.DHUB_TOKEN }}" | docker login -u ${{ secrets.DHUB_USERNAME }} --password-stdin
+    - name: push
+      run: docker push golovanovsv/debian:$VERSION-docker
+  debian-12:
+    env:
+      VERSION: "12"
+    runs-on: ubuntu-latest
+    needs:
+    - debian-12
+    steps:
+    - uses: actions/checkout@v4
+    - name: build
+      run: docker build --pull --build-arg VERSION=$VERSION -f debian-docker.dockerfile -t golovanovsv/debian:$VERSION-docker .
+    - name: login to docker hub
+      run: echo "${{ secrets.DHUB_TOKEN }}" | docker login -u ${{ secrets.DHUB_USERNAME }} --password-stdin
+    - name: push
+      run: docker push golovanovsv/debian:$VERSION-docker
   amazon-linux2:
     env:
       VERSION: "2"
