@@ -163,7 +163,7 @@ jobs:
       run: echo "${{ secrets.DHUB_TOKEN }}" | docker login -u ${{ secrets.DHUB_USERNAME }} --password-stdin
     - name: push
       run: docker push golovanovsv/debian:$VERSION-docker
-  debian-11:
+  debian-11-docker:
     env:
       VERSION: "11"
     runs-on: ubuntu-latest
@@ -177,7 +177,7 @@ jobs:
       run: echo "${{ secrets.DHUB_TOKEN }}" | docker login -u ${{ secrets.DHUB_USERNAME }} --password-stdin
     - name: push
       run: docker push golovanovsv/debian:$VERSION-docker
-  debian-12:
+  debian-12-docker:
     env:
       VERSION: "12"
     runs-on: ubuntu-latest
