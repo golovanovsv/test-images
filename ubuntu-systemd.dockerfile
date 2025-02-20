@@ -9,13 +9,11 @@ RUN apt-get update && \
       ca-certificates \
       curl \
       dnsutils \
-      docker-compose \
       gnupg \
       gnupg-agent \
       # Ansible requires the iproute2 package for network facts to be populated
       iproute2 \
       iputils-ping \
-      sudo \
       # Ansible requires for modprobe module
       kmod \
       mcedit \
@@ -25,7 +23,8 @@ RUN apt-get update && \
       python3-pip \
       python3-setuptools \
       rsyslog \
-      software-properties-common && \
+      software-properties-common \
+      sudo && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
 

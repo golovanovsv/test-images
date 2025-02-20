@@ -7,15 +7,17 @@ ARG VERSION
 RUN apt-get update && \
     apt-get install --no-install-recommends -y systemd && \
     apt-get install --no-install-recommends -y \
+      apt-transport-https \
+      ca-certificates \
+      curl \
       dnsutils \
-      docker-compose \
       gnupg \
       gnupg-agent \
       # Ansible requires the iproute2 package for network facts to be populated
       iproute2 \
       iputils-ping \
-      sudo \
-      apt-transport-https \
+      # Ansible requires for modprobe module
+      kmod \
       mcedit \
       net-tools \
       openssh-server \
@@ -23,9 +25,8 @@ RUN apt-get update && \
       python3-pip \
       python3-setuptools \
       rsyslog \
-      curl \
-      ca-certificates \
-      software-properties-common && \
+      software-properties-common \
+      sudo && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
 
