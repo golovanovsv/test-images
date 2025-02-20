@@ -198,3 +198,45 @@ jobs:
       run: echo "${{ secrets.DHUB_TOKEN }}" | docker login -u ${{ secrets.DHUB_USERNAME }} --password-stdin
     - name: push
       run: docker push golovanovsv/oraclelinux:$VERSION-systemd
+  oraclelinux-7-docker:
+    env:
+      VERSION: "7"
+    runs-on: ubuntu-latest
+    needs:
+      - oraclelinux-7
+    steps:
+    - uses: actions/checkout@v4
+    - name: build
+      run: docker build --pull --build-arg VERSION=$VERSION -f oraclelinux-docker.dockerfile -t golovanovsv/oraclelinux:$VERSION-docker .
+    - name: login to docker hub
+      run: echo "${{ secrets.DHUB_TOKEN }}" | docker login -u ${{ secrets.DHUB_USERNAME }} --password-stdin
+    - name: push
+      run: docker push golovanovsv/oraclelinux:$VERSION-docker
+  oraclelinux-8-docker:
+    env:
+      VERSION: "8"
+    runs-on: ubuntu-latest
+    needs:
+      - oraclelinux-8
+    steps:
+    - uses: actions/checkout@v4
+    - name: build
+      run: docker build --pull --build-arg VERSION=$VERSION -f oraclelinux-docker.dockerfile -t golovanovsv/oraclelinux:$VERSION-docker .
+    - name: login to docker hub
+      run: echo "${{ secrets.DHUB_TOKEN }}" | docker login -u ${{ secrets.DHUB_USERNAME }} --password-stdin
+    - name: push
+      run: docker push golovanovsv/oraclelinux:$VERSION-docker
+  oraclelinux-9-docker:
+    env:
+      VERSION: "9"
+    runs-on: ubuntu-latest
+    needs:
+      - oraclelinux-9
+    steps:
+    - uses: actions/checkout@v4
+    - name: build
+      run: docker build --pull --build-arg VERSION=$VERSION -f oraclelinux-docker.dockerfile -t golovanovsv/oraclelinux:$VERSION-docker .
+    - name: login to docker hub
+      run: echo "${{ secrets.DHUB_TOKEN }}" | docker login -u ${{ secrets.DHUB_USERNAME }} --password-stdin
+    - name: push
+      run: docker push golovanovsv/oraclelinux:$VERSION-docker
