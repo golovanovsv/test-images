@@ -2,20 +2,26 @@ ARG VERSION=2
 FROM amazonlinux:$VERSION
 LABEL maintainer="golovanovsv@gmail.com"
 
-RUN yum install -y \
+RUN yum install -y systemd && \
+    yum install -y \
+      bind-utils \
       ca-certificates \
       curl \
       # Ansible requires the iproute2 package for network facts to be populated
       iproute \
-      mcedit \
+      iputils \
+      # Ansible requires for modprobe module
+      kmod \
       net-tools \
       openssh-server \
       python3 \
       python3-pip \
+      python3-setuptools \
       rsyslog \
-      sudo && \
+      sudo \
+      vim-enhanced && \
     yum clean all
-      
+
 RUN pip3 install --no-cache-dir --upgrade pip && \
     pip3 install --no-cache-dir docker-compose testinfra
 
