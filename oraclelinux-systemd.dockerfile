@@ -19,6 +19,7 @@ RUN yum install -y systemd && \
       python3-setuptools \
       rsyslog \
       sudo \
+      unzip \
       vim-enhanced && \
     yum clean all
 

@@ -26,7 +26,8 @@ RUN apt-get update && \
       python3-setuptools \
       rsyslog \
       software-properties-common \
-      sudo && \
+      sudo \
+      unzip && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
 

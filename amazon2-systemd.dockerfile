@@ -14,11 +14,14 @@ RUN yum install -y systemd && \
       kmod \
       net-tools \
       openssh-server \
+      procps-ng \
       python3 \
       python3-pip \
       python3-setuptools \
       rsyslog \
       sudo \
+      tar \
+      unzip \
       vim-enhanced && \
     yum clean all
 
